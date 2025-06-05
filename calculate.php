@@ -1,8 +1,8 @@
 <?php
 function calculateElectricityCharges($voltage, $current, $rate, $hours) {
-    $power = $voltage * $current; // in Watts
-    $energy = ($power * $hours) / 1000; // in kWh
-    $total = $energy * ($rate / 100); // in RM
+    $power = $voltage * $current; // guna Watt
+    $energy = ($power * $hours) / 1000; // dalam kWh
+    $total = $energy * ($rate / 100); // matawang RM
     
     return [
         'power' => $power,
@@ -15,14 +15,14 @@ $voltage = isset($_POST['voltage']) ? floatval($_POST['voltage']) : 0;
 $current = isset($_POST['current']) ? floatval($_POST['current']) : 0;
 $rate = isset($_POST['rate']) ? floatval($_POST['rate']) : 0;
 
-// Calculate for different time periods
-$hourly = calculateElectricityCharges($voltage, $current, $rate, 1);
-$daily = calculateElectricityCharges($voltage, $current, $rate, 24);
-$weekly = calculateElectricityCharges($voltage, $current, $rate, 24*7);
-$monthly = calculateElectricityCharges($voltage, $current, $rate, 24*30);
-$yearly = calculateElectricityCharges($voltage, $current, $rate, 24*365);
+// pengiraan mengikut jumlah jangka masa penggunaan
+$hourly = calculateElectricityCharges($voltage, $current, $rate, 1); // sejam
+$daily = calculateElectricityCharges($voltage, $current, $rate, 24); // sehari
+$weekly = calculateElectricityCharges($voltage, $current, $rate, 24*7); // seminggu
+$monthly = calculateElectricityCharges($voltage, $current, $rate, 24*30); //sebulan
+$yearly = calculateElectricityCharges($voltage, $current, $rate, 24*365); //setahun
 
-// Calculate hourly breakdown for 24 hours
+// display pecahan mengikut kadar jam (setiap 1 jam)
 $hourly_breakdown = [];
 for ($i = 1; $i <= 24; $i++) {
     $hourly_breakdown[$i] = calculateElectricityCharges($voltage, $current, $rate, $i);
@@ -77,7 +77,7 @@ for ($i = 1; $i <= 24; $i++) {
                             </li>
                         </ul>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-6"> <!-- display kadar penggunaan -->
                         <h5>Consumption Summary</h5>
                         <table class="table table-bordered">
                             <thead class="thead-light">
@@ -116,7 +116,7 @@ for ($i = 1; $i <= 24; $i++) {
         </div>
 
         <div class="card hourly-card">
-            <div class="card-header bg-info text-white">
+            <div class="card-header bg-info text-white"> <!--pecahan ikut jam penggunaan -->
                 <h3 class="text-center">Hourly Breakdown (24 Hours)</h3>
             </div>
             <div class="card-body">
@@ -155,7 +155,7 @@ for ($i = 1; $i <= 24; $i++) {
             </div>
         </div>
 
-        <div class="text-center mt-3">
+        <div class="text-center mt-3"> <!-- button untuk ke main page bagi pengiraan baru -->
             <a href="index.php" class="btn btn-primary btn-lg">New Calculation</a>
         </div>
     </div>
