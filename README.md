@@ -6,3 +6,4 @@ AMTIZ PRE-INTERVIEW QUESTION
 3. run using web browser (localhost/yourfilename/index.php)
 
 any problem please email me b032210380@student.utem.edu.my
+thank you in advance =)
