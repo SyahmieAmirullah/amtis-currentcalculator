@@ -60,7 +60,7 @@ for ($i = 1; $i <= 24; $i++) {
                         <h5>Input Parameters</h5>
                         <ul class="list-group mb-4">
                             <li class="list-group-item d-flex justify-content-between align-items-center">
-                                Voltage
+                                Voltagee
                                 <span class="badge badge-primary"><?php echo $voltage; ?> V</span>
                             </li>
                             <li class="list-group-item d-flex justify-content-between align-items-center">
